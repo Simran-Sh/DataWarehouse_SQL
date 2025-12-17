@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\DataWarehouse_SQL\\scripts\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\DataWarehouse_SQL\\scripts\\bronze\\DDL_bronzeLayer.sql||{B5A506EB-11BE-4782-9A18-21265C2CA0B4}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:bronze\\DDL_bronzeLayer.sql||{B5A506EB-11BE-4782-9A18-21265C2CA0B4}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DDL_bronzeLayer.sql - DataWarehouse (ANIRUDH\\aniru (52))",
+              "DocumentMoniker": "E:\\DataWarehouse_SQL\\scripts\\bronze\\DDL_bronzeLayer.sql",
+              "RelativeDocumentMoniker": "bronze\\DDL_bronzeLayer.sql",
+              "ToolTip": "E:\\DataWarehouse_SQL\\scripts\\bronze\\DDL_bronzeLayer.sql - DataWarehouse (ANIRUDH\\aniru (52))",
+              "RelativeToolTip": "bronze\\DDL_bronzeLayer.sql - DataWarehouse (ANIRUDH\\aniru (52))",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-12-17T08:12:37.521Z",
+              "EditorCaption": " - DataWarehouse (ANIRUDH\\aniru (52))"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
