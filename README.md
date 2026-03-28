@@ -50,6 +50,11 @@ Following **Medallion Architecture**
 
 ---
 
+### DATA FLOW EXPLAINED THROUGH DIAGRAM FOR THE DATA LINEAGE
+![DataWarehouse_layers](Screenshots/dataflow_datalineage.png)
+
+---
+
 ## Naming Convention - BRONZE LAYER 
 	- All names must start with source system name
 	- Tables must match their original names without renaming

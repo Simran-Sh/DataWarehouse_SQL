@@ -37,7 +37,7 @@ GO
 
 -- Create schema'as for the project
 CREATE SCHEMA bronze;
-GO
+GO            
 
 CREATE SCHEMA silver;
 GO
