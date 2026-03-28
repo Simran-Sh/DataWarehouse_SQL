@@ -1,48 +1,59 @@
--- USE DataWarehouse;
+/* 
+===============================
+| BRONZE LAYER STORED PROCEDURE|
+================================
 
-EXEC bronze.load_bronze
+sp will:
+	1. Truncate all the records that exist in both crm and erp source systems table's
+	2. Load bulk data into bronze schema from external CSV's
+	3. Added "Try... Catch" block
+			- to ensure error handling, data integrity, issue logging for easier debugging
+			- so SQL runs the try block, and if it fails, it will run the catch block to handle the error
+	3. Track ETL Duration 
+			Helps identify the bottlenecks, optimize performance, monitor trends, detect issues
+			Capture and display the start and end times of each bulk insert into table
+			Capture and display the total duration of executing stored procedure
+			"DATEDIFF()" calculates the diff between 2 dates, returns days, months or/ years
 
-CREATE OR ALTER PROCEDURE bronze.load_bronze AS
+PARAMETERS
+		The sp doesn't accept any parameters to execute. It also doesn't return any values
+
+*/
+
+EXEC bronze.load_bronze;
+
+
+CREATE OR ALTER PROCEDURE bronze.load_bronze 
+AS
 BEGIN
 	DECLARE @start_time DATETIME, @end_time DATETIME, @batch_start_time DATETIME,@batch_end_time DATETIME;
 	BEGIN TRY 
 
-			PRINT'==================================================='
-			PRINT 'LOADING BRONZE LAYER'
-			PRINT '==================================================='
-
-				/* TRUNCATE TABLE bronze.crm_cust_info;
-				Use this "script line" when want to make the table empty before inserting new data/records
-				*/
+				PRINT'==================================================='
+				PRINT 'LOADING BRONZE LAYER'
+				PRINT '==================================================='
 
 				-- BULK INSERT data from csv to bronze.crm_cust_info
 				SET @batch_start_time = GETDATE();
 				PRINT '--------------------------------------------------';
-				PRINT 'LOADING BRONZE LAYERs CRM TABLEs';
+				PRINT 'LOADING CRM TABLEs';
 				PRINT '--------------------------------------------------';
 
 				SET @start_time = GETDATE();
 				PRINT '>> Truncating Table: bronze.crm_cust_info, incase any records already exist';
-				TRUNCATE TABLE bronze.crm_cust_info;
+				TRUNCATE TABLE bronze.crm_cust_info; -- Empty the table fast before inserting new data/records
 
 				PRINT '>> Insert data into bronze.crm_cust_info';
-				BULK INSERT bronze.crm_cust_info
+				BULK INSERT bronze.crm_cust_info -- (18493 rows affected)
 				FROM 'E:\DataWarehouse_SQL\datasets\source_crm\cust_info.csv'
 				WITH 
 					(
-						FIRSTROW = 2,
-						FIELDTERMINATOR =',',
-						TABLOCK
+						FIRSTROW = 2,            -- Data starts from 2nd row
+						FIELDTERMINATOR =',',    -- The separator character that splits the columns  apart
+						TABLOCK                  -- Lock the table for performance while loading is in progress
 					);
 				SET @end_time = GETDATE();
-				PRINT '>> CRM Cust info load Duration:' + CAST(DATEDIFF(second, @start_time,@end_time) AS NVARCHAR) +'seconds'
-
-				/* CHECK QUALITY OF DATA
-				SELECT * FROM bronze.crm_cust_info;
-
-				-- Check records count
-				SELECT COUNT(*) FROM bronze.crm_cust_info;
-				*/
+				PRINT '>> CRM Cust info load Duration:' + CAST(DATEDIFF(second, @start_time,@end_time) AS NVARCHAR) +' seconds'
 
 
 				-- BULK INSERT data from csv to bronze.crm_prd_info
@@ -50,7 +61,6 @@ BEGIN
 				TRUNCATE TABLE bronze.crm_prd_info;
 
 				PRINT '>> Insert data into bronze.crm_prd_info';
-				
 				BULK INSERT bronze.crm_prd_info
 				FROM 'E:\DataWarehouse_SQL\datasets\source_crm\prd_info.csv'
 				WITH 
@@ -59,13 +69,6 @@ BEGIN
 						FIELDTERMINATOR =',',
 						TABLOCK
 					);
-
-				/*CHECK QUALITY OF DATA
-				SELECT * FROM bronze.crm_prd_info;
-
-				-- Check records count
-				SELECT COUNT(*) FROM bronze.crm_prd_info;
-				*/
 
 				-- BULK INSERT data from csv to bronze.crm_sales_details
 				PRINT '>> Truncating Table: bronze.crm_sales_details, incase any records already exist';
@@ -89,7 +92,7 @@ BEGIN
 				*/
 
 				PRINT '--------------------------------------------------';
-				PRINT 'LOADING BRONZE LAYERs ERP TABLEs';
+				PRINT 'LOADING ERP TABLEs';
 				PRINT '--------------------------------------------------';
 
 				-- BULK INSERT data from csv to bronze.erp_cust_az12
