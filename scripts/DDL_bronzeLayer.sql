@@ -1,20 +1,38 @@
 
-/* Create DDL's for bronze using name convention i.e <sourcesystem>_entity>
-<sourcesystem> - is the name of the source system i.e CRM / ERP, etc
-<entity> - is the extract table name from the source system 
-Example - crm_customer_infp - Customerinfo from CRM System
+/* 
+==============================
+| BRONZE LAYER SPECIFICATIONS|
+==============================
+DDL's Name Convention: 
+<sourcesystem>_entity>
+		<sourcesystem> - is the name of the source system i.e CRM / ERP, etc
+		<entity> - is the extract table name from the source system 
+		Example - crm_customer_infp - Customerinfo from CRM System
+
+NOTE:
+		 Create Tables with proper naming conventions for both source system 
+			- CRM 
+			- ERP
+
+		 Keep the column names same as that of from the csv files
+
+		 Check if the SQL Table exist or/ not using 
+			"OBJECT_ID  passing table name 
+			specifying that its a "User define table (U) as parameter
+		
+THE OBJ COMMAND's WILL
+		drop the existing table with same name if already exists
+		And then recreate from scratch in same schema
 
 */
 
-/*
- IF OBJECT_ID ('bronze.crm_cust_info', 'U') IS NOT NULL
-	DROP TABLE bronze.crm_cust_info;
- this command will drop the existing table with same name if already exists 
-	*/
-
 USE DataWarehouse;
 
+
 -- DDL for customer info table of CRM 
+IF OBJECT_ID ('bronze.crm_cust_info', 'U') IS NOT NULL
+	DROP TABLE bronze.crm_cust_info;
+
 CREATE TABLE bronze.crm_cust_info
 (
 	cst_id INT,
@@ -26,7 +44,11 @@ CREATE TABLE bronze.crm_cust_info
 	cst_create_date DATE
 );
 GO
+
+
 -- DDL for product info table of CRM 
+IF OBJECT_ID ('bronze.crm_prd_info', 'U') IS NOT NULL
+	DROP TABLE bronze.crm_prd_info;
 
 CREATE TABLE bronze.crm_prd_info
 (
@@ -39,7 +61,11 @@ CREATE TABLE bronze.crm_prd_info
 	prd_end_dt DATETIME
 );
 GO
+
+
 -- DDL for sales info table of CRM 
+IF OBJECT_ID ('bronze.crm_sales_details', 'U') IS NOT NULL
+	DROP TABLE bronze.crm_sales_details;
 
 CREATE TABLE bronze.crm_sales_details
 (
@@ -54,7 +80,10 @@ CREATE TABLE bronze.crm_sales_details
 	sls_price INT
 );
 GO
+
 -- DDL for customer info table of ERP 
+IF OBJECT_ID ('bronze.erp_cust_az12', 'U') IS NOT NULL
+	DROP TABLE bronze.erp_cust_az12;
 
 CREATE TABLE bronze.erp_cust_az12
 (
@@ -63,9 +92,10 @@ CREATE TABLE bronze.erp_cust_az12
 	GEN NVARCHAR(50)
 );
 GO
+
 -- DDL for Loc info table of ERP 
-
-
+IF OBJECT_ID ('bronze.erp_loc_a101', 'U') IS NOT NULL
+	DROP TABLE bronze.erp_loc_a101;
 
 CREATE TABLE bronze.erp_loc_a101
 (
@@ -73,9 +103,11 @@ CREATE TABLE bronze.erp_loc_a101
 	CNTRY NVARCHAR(50)
 );
 GO
+
+
 -- DDL for PX Category info table of ERP 
-
-
+IF OBJECT_ID ('bronze.erp_px_cat_g1v2', 'U') IS NOT NULL
+	DROP TABLE bronze.erp_px_cat_g1v2;
 
 CREATE TABLE bronze.erp_px_cat_g1v2
 (
