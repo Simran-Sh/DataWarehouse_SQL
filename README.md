@@ -20,12 +20,12 @@ Following **Medallion Architecture**
 	- Its a data design pattern used in lakehouse environments to organize data into three distinct layers—Bronze, Silver, and Gold—that progressively improve data quality and structure
 	-  The architecture supports ELT (Extract, Load, Transform) workflows, allowing light transformations in the Silver layer and advanced business logic in the Gold layer.
 
-![DataAcrchitectureFlow](Screenshots\DataAcrchitectureFlow.png)
+![DataAcrchitectureFlow](Screenshots/DataAcrchitectureFlow.png)
 
 ---
 
 ## Naming Convention with lowercase and underscore to seperate the words
-![snake_case](Screenshots\snake_case.png)
+![snake_case](Screenshots/snake_case.png)
 
 ## Columns 
 ### Surrogate Keys
@@ -46,7 +46,7 @@ Following **Medallion Architecture**
 ---
 
 ### DataWarehouse_layers
-![DataWarehouse_layers](Screenshots\dwh_layers.png)
+![DataWarehouse_layers](Screenshots/dwh_layers.png)
 
 ---
 
