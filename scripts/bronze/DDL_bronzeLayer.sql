@@ -14,9 +14,9 @@ NOTE:
 			- CRM 
 			- ERP
 
-		 Keep the column names same as that of from the csv files
+		 Kept the column names same as that of from the csv files
 
-		 Check if the SQL Table exist or/ not using 
+		 Checked if the SQL Table exist or/ not using 
 			"OBJECT_ID  passing table name 
 			specifying that its a "User define table (U) as parameter
 		
@@ -27,6 +27,12 @@ THE OBJ COMMAND's WILL
 */
 
 USE DataWarehouse;
+
+/*
+=======================================
+Data Definition Language Script (DDL)
+=======================================
+*/
 
 
 -- DDL for customer info table of CRM 
@@ -87,9 +93,9 @@ IF OBJECT_ID ('bronze.erp_cust_az12', 'U') IS NOT NULL
 
 CREATE TABLE bronze.erp_cust_az12
 (
-	CID NVARCHAR(50),
-	BDATE DATE,
-	GEN NVARCHAR(50)
+	cid NVARCHAR(50),
+	bdate DATE,
+	gen NVARCHAR(50)
 );
 GO
 
@@ -99,8 +105,8 @@ IF OBJECT_ID ('bronze.erp_loc_a101', 'U') IS NOT NULL
 
 CREATE TABLE bronze.erp_loc_a101
 (
-	CID NVARCHAR(50),
-	CNTRY NVARCHAR(50)
+	cid NVARCHAR(50),
+	cntry NVARCHAR(50)
 );
 GO
 
@@ -111,10 +117,10 @@ IF OBJECT_ID ('bronze.erp_px_cat_g1v2', 'U') IS NOT NULL
 
 CREATE TABLE bronze.erp_px_cat_g1v2
 (
-	ID NVARCHAR(50),
-	CAT NVARCHAR(50),
-	SUBCAT NVARCHAR(50),
-	MAINTENANCE NVARCHAR(50)
+	id NVARCHAR(50),
+	cat NVARCHAR(50),
+	subcat NVARCHAR(50),
+	maintenance NVARCHAR(50)
 );
 GO
 
