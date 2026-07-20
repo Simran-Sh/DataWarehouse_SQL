@@ -46,7 +46,7 @@ CREATE TABLE bronze.crm_cust_info
 	cst_firstname NVARCHAR(50),
 	cst_lastname NVARCHAR(50),
 	cst_marital_status NVARCHAR(50),
-	cst_gnder NVARCHAR(50),
+	cst_gender NVARCHAR(50),
 	cst_create_date DATE
 );
 GO
@@ -95,7 +95,7 @@ CREATE TABLE bronze.erp_cust_az12
 (
 	cid NVARCHAR(50),
 	bdate DATE,
-	gen NVARCHAR(50)
+	gender NVARCHAR(50)
 );
 GO
 
@@ -106,7 +106,7 @@ IF OBJECT_ID ('bronze.erp_loc_a101', 'U') IS NOT NULL
 CREATE TABLE bronze.erp_loc_a101
 (
 	cid NVARCHAR(50),
-	cntry NVARCHAR(50)
+	country NVARCHAR(50)
 );
 GO
 
