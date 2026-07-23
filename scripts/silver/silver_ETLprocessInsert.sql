@@ -1,8 +1,17 @@
-/* ========================================
+/* ========================
 SILVER LAYER -  ETL PROCESS
-========================================
+============================
+Script Purspose: 
+	This SP performs the ETL (extract, transform, load) process to populate the 'silver' schema tables from the 'bronze' schema tables
 
-TABLE 1: crm_cust_info
+Action Performed:
+	- Truncate Silver Tables from CRM and ERP source systerms
+	- Record the batch and each table load time
+	- Insert the transformed and cleansed data from Bronze into silver layer
+
+Parameters:
+	No parametrs are accepted by this SP. 
+	No retun values
 ------------------------------------*/
 Use DataWarehouse;
 
@@ -23,9 +32,13 @@ BEGIN
 		PRINT '======================';
 		PRINT 'SILVER LAYER: CRM SOURCE SYSTEM LOADING';
 		PRINT '-------------------------';
+
+		/* ---------------------
+		TABLE 1: crm_cust_info
+        ----------------------*/
 		PRINT 'Truncating crm_cust_info table';
 		TRUNCATE TABLE silver.crm_cust_info;
-
+		
 		PRINT 'inserting data into crm_cust_info table';
 		SET @starttime = GETDATE();
 		INSERT INTO silver.crm_cust_info
