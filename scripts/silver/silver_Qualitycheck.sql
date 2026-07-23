@@ -3,13 +3,26 @@
 ==============================================
 SILVER LAYER Quality check after ETL process |
 ==============================================
-TABLE 1: crm_cust_info
------------------------
+Script Purpose: 
+	This script performs the quality check for data consistency, standardiization across the "silver" layer schema
 
+Checks: 
+	- Nulls and Empty strings
+	- Duplicates
+	- Unwanted Spaces
+	- Invalid Dates / negative values
+	- Cardinality Standardization
+
+Usage Notes:
+	- Run after loading data in Silver layer using Stored Procesure Load_Silver() without any parameters
+	- Investigate and resolve any discrepancies found during checks
+
+-----------------------
+TABLE 1: crm_cust_info
+----------------------
 1.PRIMARY KEY MUST BE UNIQUE AND NOT NULL
 - Expectation in output: No result
 */
-
 Use DataWarehouse;
 
 SELECT * FROM SILVER.crm_cust_info;

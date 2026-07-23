@@ -2,12 +2,17 @@
 ======================
 DDL FOR SILVER LAYER
 ======================
-Bronze layer rules:
+Script Purpose:
+	- To create tables in 'Silver' Layer Schema by dropping existing tables with values
+	This ensures, No history is kept and no duplicacy exist
+	- To redefine the DD; structure with cleansing and transformation of 'Bronze' layer schema tables
+
+Silver layer rules:
 1. Create DDL's for silver using name convention i.e <sourcesystem>_entity>
 
 Means:
 <sourcesystem> - Is the name of the source system i.e CRM / ERP, etc
-<entity> - Is the extract table name from the source system 
+<entity> - Is the extract table name from the Bronze layer tables
 
 Example
 	crm_customer_info - Customerinfo from CRM System
